@@ -1,0 +1,29 @@
+{
+  "name": "chapybara",
+  "version": "0.1.0",
+  "description": "Official NodeJS SDK for the Chapybara Domain & IP Intelligence API.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chapybara",
+    "api",
+    "sdk",
+    "domain",
+    "ip",
+    "intelligence",
+    "security"
+  ],
+  "author": "Alpha System",
+  "license": "MIT",
+  "dependencies": {
+    "lru-cache": "^11.2.0",
+    "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
