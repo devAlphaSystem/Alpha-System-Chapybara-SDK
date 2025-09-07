@@ -1,6 +1,6 @@
 {
   "name": "chapybara",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Official NodeJS SDK for the Chapybara Domain & IP Intelligence API.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -20,8 +20,7 @@
   "author": "Alpha System",
   "license": "MIT",
   "dependencies": {
-    "lru-cache": "^11.2.1",
-    "node-fetch": "^3.3.2"
+    "lru-cache": "^11.2.1"
   },
   "engines": {
     "node": ">=18.0.0"

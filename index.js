@@ -1,6 +1,6 @@
-import fetch from "node-fetch";
 import { LRUCache } from "lru-cache";
 import { APIError, AuthenticationError, BadRequestError, NotFoundError, RateLimitError, ServerError } from "./lib/errors.js";
+import { version as SDK_VERSION } from "./package.json" assert { type: "json" };
 
 const DEFAULT_BASE_URL = "https://api.chapyapi.com/api/v1";
 const DEFAULT_RETRIES = 2;
@@ -55,7 +55,7 @@ export class ChapybaraClient {
         headers: {
           "X-API-Key": this.apiKey,
           "Content-Type": "application/json",
-          "User-Agent": "Chapybara-NodeJS-SDK/1.0.0",
+          "User-Agent": `Chapybara-NodeJS-SDK/${SDK_VERSION}`,
         },
         signal: controller.signal,
       });
