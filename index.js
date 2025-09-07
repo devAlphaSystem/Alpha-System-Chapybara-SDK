@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import { LRUCache } from "lru-cache";
 import { APIError, AuthenticationError, BadRequestError, NotFoundError, RateLimitError, ServerError } from "./lib/errors.js";
 
-const DEFAULT_BASE_URL = "https://chapyapi.com/api/v1";
+const DEFAULT_BASE_URL = "https://api.chapyapi.com/api/v1";
 const DEFAULT_RETRIES = 2;
 const DEFAULT_TIMEOUT = 20000;
 
