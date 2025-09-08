@@ -1,6 +1,6 @@
 {
   "name": "chapybara",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Official NodeJS SDK for the Chapybara Domain & IP Intelligence API.",
   "main": "index.js",
   "types": "index.d.ts",
