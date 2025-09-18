@@ -3,9 +3,9 @@ import { APIError, AuthenticationError, BadRequestError, NotFoundError, RateLimi
 
 const DEFAULT_BASE_URL = "https://api.chapyapi.com/api/v1";
 const DEFAULT_RETRIES = 2;
-const DEFAULT_TIMEOUT = 20000;
+const DEFAULT_TIMEOUT = 30000;
 
-const SDK_VERSION = "0.2.1";
+const SDK_VERSION = "0.3.0";
 
 export class ChapybaraClient {
   constructor(options) {
@@ -34,6 +34,10 @@ export class ChapybaraClient {
       getScanner: (domain) => this._request(`/webtech/${domain}`),
     };
 
+    this.screenshot = {
+      get: (domain) => this._request(`/screenshot/${domain}`),
+    };
+
     this.account = {
       getInfo: () => this._request("/account"),
     };
@@ -42,6 +46,7 @@ export class ChapybaraClient {
   async _request(endpoint, attempt = 1) {
     const url = `${this.baseUrl}${endpoint}`;
     const cacheKey = endpoint;
+    const isScreenshotRequest = endpoint.startsWith("/screenshot");
 
     if (this.cache?.has(cacheKey)) {
       return this.cache.get(cacheKey);
@@ -72,7 +77,13 @@ export class ChapybaraClient {
         await this._handleError(response);
       }
 
-      const data = await response.json();
+      let data;
+      if (isScreenshotRequest) {
+        const arrayBuffer = await response.arrayBuffer();
+        data = Buffer.from(arrayBuffer);
+      } else {
+        data = await response.json();
+      }
 
       if (this.cache) {
         this.cache.set(cacheKey, data);

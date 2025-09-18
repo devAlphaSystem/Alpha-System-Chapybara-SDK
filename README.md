@@ -76,6 +76,24 @@ async function getWebTechInfo() {
 getWebTechInfo();
 ```
 
+### Get Website Screenshot
+
+```javascript
+import fs from "fs/promises";
+
+async function getWebsiteScreenshot() {
+  try {
+    const imageBuffer = await chapybara.screenshot.get("apple.com");
+    await fs.writeFile("screenshot.png", imageBuffer);
+    console.log("Screenshot saved to screenshot.png");
+  } catch (error) {
+    console.error(`Error fetching screenshot: ${error.message}`);
+  }
+}
+
+getWebsiteScreenshot();
+```
+
 ### Get Account Information
 
 ```javascript
@@ -83,6 +101,7 @@ async function getAccountDetails() {
   try {
     const data = await chapybara.account.getInfo();
     console.log("Domain quota remaining:", data.quotas.domain.remaining);
+    console.log("Screenshot quota remaining:", data.quotas.screenshot.remaining);
   } catch (error) {
     console.error(`Error fetching account info: ${error.message}`);
   }
@@ -100,7 +119,7 @@ const chapybara = new ChapybaraClient({
   apiKey: "ck_your_api_key_here",
   baseUrl: "https://api.chapyapi.com/api/v1", // Optional: override base URL
   retries: 2, // Optional: number of retries on server errors (default: 2)
-  timeout: 15000, // Optional: request timeout in ms (default: 20000)
+  timeout: 30000, // Optional: request timeout in ms (default: 30000)
   cacheOptions: {
     // Optional: LRU cache options
     max: 500, // Max number of items in cache

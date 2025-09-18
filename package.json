@@ -1,6 +1,6 @@
 {
   "name": "chapybara",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Official NodeJS SDK for the Chapybara Domain & IP Intelligence API.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -15,7 +15,8 @@
     "domain",
     "ip",
     "intelligence",
-    "security"
+    "security",
+    "screenshot"
   ],
   "author": "Alpha System",
   "license": "MIT",

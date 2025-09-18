@@ -1,4 +1,5 @@
 import type { LRUCache } from "lru-cache";
+import type { Buffer } from "node:buffer";
 
 declare module "chapybara" {
   interface ChapybaraClientOptions {
@@ -240,6 +241,7 @@ declare module "chapybara" {
       domain: { limit: number; used: number; remaining: number };
       ip: { limit: number; used: number; remaining: number };
       webtech: { limit: number; used: number; remaining: number };
+      screenshot: { limit: number; used: number; remaining: number };
       reset_date: string;
     };
     api_key: {
@@ -278,6 +280,10 @@ declare module "chapybara" {
 
     webtech: {
       getScanner: (domain: string) => Promise<WebTechResponse>;
+    };
+
+    screenshot: {
+      get: (domain: string) => Promise<Buffer>;
     };
 
     account: {
