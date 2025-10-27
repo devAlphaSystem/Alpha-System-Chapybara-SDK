@@ -28,6 +28,21 @@ const chapybara = new ChapybaraClient({
 });
 ```
 
+### Get Your IP Address
+
+```javascript
+async function getUserIP() {
+  try {
+    const data = await chapybara.getUserIP();
+    console.log(data.ip);
+  } catch (error) {
+    console.error(`Error fetching user IP: ${error.message}`);
+  }
+}
+
+getUserIP();
+```
+
 ### Get Domain Intelligence
 
 ```javascript

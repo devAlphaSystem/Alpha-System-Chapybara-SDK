@@ -289,5 +289,7 @@ declare module "chapybara" {
     account: {
       getInfo: () => Promise<AccountInfoResponse>;
     };
+
+    getUserIP: () => Promise<{ ip: string }>;
   }
 }
