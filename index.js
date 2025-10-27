@@ -5,7 +5,7 @@ const DEFAULT_BASE_URL = "https://api.chapyapi.com/api/v1";
 const DEFAULT_RETRIES = 2;
 const DEFAULT_TIMEOUT = 30000;
 
-const SDK_VERSION = "0.3.0";
+const SDK_VERSION = "0.4.0";
 
 export class ChapybaraClient {
   constructor(options) {
@@ -41,6 +41,8 @@ export class ChapybaraClient {
     this.account = {
       getInfo: () => this._request("/account"),
     };
+
+    this.getUserIP = () => this._request("/ip");
   }
 
   async _request(endpoint, attempt = 1) {
