@@ -34,10 +34,6 @@ export class ChapybaraClient {
       getScanner: (domain) => this._request(`/webtech/${domain}`),
     };
 
-    this.screenshot = {
-      get: (domain) => this._request(`/screenshot/${domain}`),
-    };
-
     this.account = {
       getInfo: () => this._request("/account"),
     };
@@ -48,7 +44,6 @@ export class ChapybaraClient {
   async _request(endpoint, attempt = 1) {
     const url = `${this.baseUrl}${endpoint}`;
     const cacheKey = endpoint;
-    const isScreenshotRequest = endpoint.startsWith("/screenshot");
 
     if (this.cache?.has(cacheKey)) {
       return this.cache.get(cacheKey);
@@ -79,13 +74,7 @@ export class ChapybaraClient {
         await this._handleError(response);
       }
 
-      let data;
-      if (isScreenshotRequest) {
-        const arrayBuffer = await response.arrayBuffer();
-        data = Buffer.from(arrayBuffer);
-      } else {
-        data = await response.json();
-      }
+      const data = await response.json();
 
       if (this.cache) {
         this.cache.set(cacheKey, data);
